@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class Score : MonoBehaviour
 {
@@ -36,6 +35,12 @@ public class Score : MonoBehaviour
     {
         scoreNum += value;
         UpdateScore();
+    }
+
+    // LẤY ĐIỂM HIỆN TẠI
+    public int GetScore()
+    {
+        return scoreNum;
     }
 
     // Update UI

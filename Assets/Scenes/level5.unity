@@ -1384,6 +1384,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeText: {fileID: 720222362}
   startTime: 60
+  transitionDelay: 1
 --- !u!1 &724692009
 GameObject:
   m_ObjectHideFlags: 0
@@ -9859,6 +9860,10 @@ PrefabInstance:
     - target: {fileID: 4372006166262195077, guid: 94abadf8ac56c6648bf86f0e95b71c2a, type: 3}
       propertyPath: m_Name
       value: Checkpoint
+      objectReference: {fileID: 0}
+    - target: {fileID: 4372006166262195077, guid: 94abadf8ac56c6648bf86f0e95b71c2a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6148184851798326340, guid: 94abadf8ac56c6648bf86f0e95b71c2a, type: 3}
       propertyPath: m_LocalScale.x

@@ -1,16 +1,12 @@
 using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class CountdownTimer : MonoBehaviour
 {
-    [Header("UI")]
     [SerializeField] private TextMeshProUGUI timeText;
-
-    [Header("Time Settings")]
     [SerializeField] private float startTime = 60f;
-
-    [Header("Scene Transition")]
     [SerializeField] private float transitionDelay = 1f;
 
     private float currentTime;
@@ -44,12 +40,19 @@ public class CountdownTimer : MonoBehaviour
         timeText.text = seconds.ToString();
     }
 
-    private System.Collections.IEnumerator EndGame()
+    IEnumerator EndGame()
     {
-        Debug.Log("Hết giờ!");
+        // LẤY ĐIỂM TỪ SCORE
+        int finalScore = Score.instance.GetScore();
+
+        string sceneName = SceneManager.GetActiveScene().name;
+
+        // LƯU SCENE + ĐIỂM
+        PlayerPrefs.SetString("LastScene", sceneName);
+        PlayerPrefs.SetInt(sceneName + "_Score", finalScore);
 
         yield return new WaitForSeconds(transitionDelay);
-        // chuyển sang scene tiếp theo
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+
+        SceneManager.LoadScene("Leaderboard");
     }
 }
