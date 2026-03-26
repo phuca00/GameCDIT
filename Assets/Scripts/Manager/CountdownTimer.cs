@@ -1,5 +1,6 @@
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class CountdownTimer : MonoBehaviour
 {
@@ -8,6 +9,9 @@ public class CountdownTimer : MonoBehaviour
 
     [Header("Time Settings")]
     [SerializeField] private float startTime = 60f;
+
+    [Header("Scene Transition")]
+    [SerializeField] private float transitionDelay = 1f;
 
     private float currentTime;
     private bool isRunning = true;
@@ -28,7 +32,7 @@ public class CountdownTimer : MonoBehaviour
         {
             currentTime = 0f;
             isRunning = false;
-            OnTimeEnd();
+            StartCoroutine(EndGame());
         }
 
         UpdateUI();
@@ -40,9 +44,12 @@ public class CountdownTimer : MonoBehaviour
         timeText.text = seconds.ToString();
     }
 
-    void OnTimeEnd()
+    private System.Collections.IEnumerator EndGame()
     {
         Debug.Log("Hết giờ!");
-        // bạn có thể gọi end game, hiển thị bảng xếp hạng ở đây
+
+        yield return new WaitForSeconds(transitionDelay);
+        // chuyển sang scene tiếp theo
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 }
