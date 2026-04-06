@@ -1,17 +1,18 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using Unity.Netcode;
 
-public class ScoreManager : MonoBehaviour
+public class ScoreManager : NetworkBehaviour
 {
-    public static ScoreManager instance;
-    public int score = 0;
+    public static ScoreManager Instance;
 
-    void Awake()
+    // Sync điểm cho tất cả client
+    public NetworkVariable<int> score = new NetworkVariable<int>(0);
+
+    private void Awake()
     {
-        if (instance == null)
+        if (Instance == null)
         {
-            instance = this;
+            Instance = this;
             DontDestroyOnLoad(gameObject);
         }
         else
@@ -21,28 +22,19 @@ public class ScoreManager : MonoBehaviour
         }
     }
 
-    void Start()
-    {
-        // Lấy điểm đã lưu (nếu có)
-        score = PlayerPrefs.GetInt("TotalScore", 0);
-    }
-
+    // chỉ server được phép cộng điểm
     public void AddScore(int amount)
     {
-        score += amount;
-        SaveScore();
+        if (!IsServer) return;
+
+        score.Value += amount;
     }
 
-    public void SaveScore()
-    {
-        PlayerPrefs.SetInt("TotalScore", score);
-        PlayerPrefs.Save();
-    }
-
+    // reset điểm (server)
     public void ResetScore()
     {
-        score = 0;
-        SaveScore();
-    }
+        if (!IsServer) return;
 
+        score.Value = 0;
+    }
 }

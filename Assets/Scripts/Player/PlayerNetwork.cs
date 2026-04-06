@@ -1,7 +1,7 @@
 using UnityEngine;
 using Unity.Netcode;
 
-public class PlayerMovement : NetworkBehaviour
+public class PlayerNetwork : NetworkBehaviour
 {
     private float horizontal;
 
@@ -57,6 +57,7 @@ public class PlayerMovement : NetworkBehaviour
         if (!IsOwner)
         {
             animator.SetInteger(stateHash, netState.Value);
+            Debug.Log($"=== Check state: {stateHash}  {netState.Value} ===");
 
             Vector3 scale = transform.localScale;
             scale.x = netScaleX.Value;
@@ -219,9 +220,12 @@ public class PlayerMovement : NetworkBehaviour
 
         if (IsGrounded())
         {
+            Debug.Log("--Check: is grounded");
             state = Mathf.Abs(horizontal) > 0.1f ? State.running : State.idle;
 
             animator.SetInteger(stateHash, (int)state);
+            Debug.Log($"=== Check state: {stateHash}  ===");
+
             SendAnimServerRpc((int)state, transform.localScale.x);
             return;
         }
@@ -236,6 +240,8 @@ public class PlayerMovement : NetworkBehaviour
             state = State.idle;
 
         animator.SetInteger(stateHash, (int)state);
+        Debug.Log($"=== Check state: {stateHash}  ===");
+
         SendAnimServerRpc((int)state, transform.localScale.x);
     }
 

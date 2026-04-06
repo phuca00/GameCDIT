@@ -44,8 +44,10 @@ GameObject:
   - component: {fileID: 3480678729230075083}
   - component: {fileID: 463813855764722273}
   - component: {fileID: 1169055550660967684}
-  - component: {fileID: 6864900826115026793}
+  - component: {fileID: -4764830191682341827}
   - component: {fileID: -5457422588882966905}
+  - component: {fileID: -1569839668515444028}
+  - component: {fileID: 3258648238088577942}
   m_Layer: 0
   m_Name: MaskDude Player
   m_TagString: Player
@@ -145,7 +147,7 @@ Rigidbody2D:
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
@@ -205,7 +207,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &6864900826115026793
+--- !u!114 &-4764830191682341827
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -214,29 +216,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 3558011228071767015}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9c547a2205b0e7341a6a94c6705b025e, type: 3}
+  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 6
-  jumpingPower: 13
-  rb: {fileID: 3480678729230075083}
-  groundCheck: {fileID: 2637425020158493935}
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 128
-  wallCheck: {fileID: 1855681227509882077}
-  wallLayer:
-    serializedVersion: 2
-    m_Bits: 192
-  groundCheckRadius: 0.18
-  coyoteTime: 0.12
-  jumpBufferTime: 0.12
-  maxWallJumps: 2
-  wallSlidingSpeed: 2
-  wallJumpDirection: 0
-  wallJumpDuration: 0.2
-  wallJumpPower: {x: 5, y: 10}
-  animator: {fileID: 1169055550660967684}
+  GlobalObjectIdHash: 3859567304
+  InScenePlacedSourceGlobalObjectIdHash: 0
+  AlwaysReplicateAsRoot: 0
+  SynchronizeTransform: 1
+  ActiveSceneSynchronization: 0
+  SceneMigrationSynchronization: 1
+  SpawnWithObservers: 1
+  DontDestroyWithOwner: 0
+  AutoObjectParentSync: 1
 --- !u!114 &-5457422588882966905
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -249,10 +240,74 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb37f04a5c999184bab017db617d9e5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHealth: 5
   currentHealth: 0
   animator: {fileID: 1169055550660967684}
   rb: {fileID: 3480678729230075083}
   invincibleTime: 0.4
+--- !u!114 &-1569839668515444028
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3558011228071767015}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e96cb6065543e43c4a752faaa1468eb1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  UseUnreliableDeltas: 0
+  SyncPositionX: 1
+  SyncPositionY: 1
+  SyncPositionZ: 1
+  SyncRotAngleX: 1
+  SyncRotAngleY: 1
+  SyncRotAngleZ: 1
+  SyncScaleX: 0
+  SyncScaleY: 0
+  SyncScaleZ: 0
+  PositionThreshold: 0.001
+  RotAngleThreshold: 0.01
+  ScaleThreshold: 0.01
+  UseQuaternionSynchronization: 0
+  UseQuaternionCompression: 0
+  UseHalfFloatPrecision: 0
+  InLocalSpace: 0
+  Interpolate: 1
+  SlerpPosition: 0
+--- !u!114 &3258648238088577942
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3558011228071767015}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c479cc0c9774d4542b1a89c56f4aed47, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 5
+  jumpingPower: 8
+  rb: {fileID: 3480678729230075083}
+  groundCheck: {fileID: 2637425020158493935}
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 128
+  wallCheck: {fileID: 1855681227509882077}
+  wallLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  groundCheckRadius: 0.18
+  coyoteTime: 0.12
+  jumpBufferTime: 0.12
+  maxWallJumps: 2
+  wallSlidingSpeed: 2
+  wallJumpDirection: 0
+  wallJumpDuration: 0.2
+  wallJumpPower: {x: 5, y: 10}
+  animator: {fileID: 1169055550660967684}
 --- !u!1 &7913958250107053683
 GameObject:
   m_ObjectHideFlags: 0

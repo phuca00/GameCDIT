@@ -1,38 +1,36 @@
 using UnityEngine;
-using TMPro;
+using Unity.Netcode;
 using UnityEngine.SceneManagement;
 using System.Collections;
 
-public class LeaderboardDisplay : MonoBehaviour
+public class LeaderboardLoader : NetworkBehaviour
 {
-    [SerializeField] private TextMeshProUGUI scoreText;
-    [SerializeField] private float waitTime = 3f;
+    [SerializeField] private float waitTime = 2f;
 
-    private void Start()
+    public override void OnNetworkSpawn()
     {
-        string lastScene = PlayerPrefs.GetString("LastScene", "level1");
-        int score = PlayerPrefs.GetInt(lastScene + "_Score", 0);
-
-        scoreText.text = SessionScore.totalScore.ToString();
-
-        StartCoroutine(LoadNextLevel(lastScene));
+        if (IsServer)
+        {
+            StartCoroutine(LoadNextLevel());
+        }
     }
 
-    IEnumerator LoadNextLevel(string lastScene)
+    IEnumerator LoadNextLevel()
     {
         yield return new WaitForSeconds(waitTime);
 
-        int levelNumber = int.Parse(lastScene.Replace("level", ""));
+        string lastLevel = PlayerPrefs.GetString("LastLevel", "level1");
+
+        int levelNumber = int.Parse(lastLevel.Replace("level", ""));
         int nextLevel = levelNumber + 1;
 
         if (nextLevel > 8)
         {
-            // đã xong level8 → quay về màn chọn level
-            SceneManager.LoadScene("selectlevel");
+            NetworkManager.Singleton.SceneManager.LoadScene("selectlevel", LoadSceneMode.Single);
         }
         else
         {
-            SceneManager.LoadScene("level" + nextLevel);
+            NetworkManager.Singleton.SceneManager.LoadScene("level" + nextLevel, LoadSceneMode.Single);
         }
     }
 }

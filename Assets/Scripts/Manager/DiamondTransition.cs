@@ -38,13 +38,13 @@ public class SceneTransitionManager : MonoBehaviour
     {
         // Đăng ký (Subscribe) lắng nghe sự kiện từ class Checkpoint
         // Đảm bảo Checkpoint.OnCheckpointActivated là public static
-        Checkpoint.OnCheckpointActivated += StartTransition;
+        //Checkpoint.OnCheckpointActivated += StartTransition;
     }
 
     private void OnDisable()
     {
         // Hủy đăng ký (Unsubscribe) khi GameObject bị vô hiệu hóa
-        Checkpoint.OnCheckpointActivated -= StartTransition;
+        //Checkpoint.OnCheckpointActivated -= StartTransition;
     }
 
     // Hàm được gọi khi Checkpoint kích hoạt sự kiện

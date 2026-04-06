@@ -1,37 +1,46 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using Unity.Netcode;
 
-public class Fruits : MonoBehaviour
+public class Fruits : NetworkBehaviour
 {
-    private SpawnItem spawnSystem;
+    [SerializeField] private int scoreValue = 1;
 
-    [Header("Score Settings")]
-    [SerializeField] private int scoreValue = 1;   // điểm của quả này
-
-    private void Start()
-    {
-        spawnSystem = FindObjectOfType<SpawnItem>();
-    }
+    private bool isCollected = false;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        // chỉ xử lý khi player chạm vào
+        // chỉ server xử lý
+        if (!IsServer) return;
+
+        // tránh ăn 2 lần khi nhiều player chạm cùng lúc
+        if (isCollected) return;
+
         if (!collision.CompareTag("Player")) return;
 
-        // phát âm thanh ăn quả
-        if (AudioManager.instance != null)
-            AudioManager.instance.PlayFruit();
+        isCollected = true;
 
         // cộng điểm
-        if (Score.instance != null)
-            Score.instance.AddScore(scoreValue);
+        if (ScoreManager.Instance != null)
+        {
+            ScoreManager.Instance.AddScore(scoreValue);
+        }
 
-        // báo cho hệ thống spawn biết đã nhặt item
-        if (spawnSystem != null)
-            spawnSystem.ItemCollected();
+        // gọi hiệu ứng cho tất cả client (nếu có)
+        PlayCollectEffectClientRpc();
 
-        // hủy quả
-        Destroy(gameObject);
+        // xoá object trên toàn network
+        NetworkObject.Despawn(true);
+    }
+
+    [ClientRpc]
+    void PlayCollectEffectClientRpc()
+    {
+        // bạn có thể thêm:
+        // - sound
+        // - particle effect
+        // - floating text
+
+        // ví dụ:
+        // AudioManager.instance.PlayFruit();
     }
 }

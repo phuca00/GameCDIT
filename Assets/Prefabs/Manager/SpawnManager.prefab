@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8807664049238721893}
+  - component: {fileID: 1983053729148935516}
   - component: {fileID: 2847043059142239439}
   m_Layer: 0
   m_Name: SpawnManager
@@ -32,6 +33,27 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1983053729148935516
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2694601954719151505}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GlobalObjectIdHash: 3860944681
+  InScenePlacedSourceGlobalObjectIdHash: 0
+  AlwaysReplicateAsRoot: 0
+  SynchronizeTransform: 1
+  ActiveSceneSynchronization: 0
+  SceneMigrationSynchronization: 1
+  SpawnWithObservers: 1
+  DontDestroyWithOwner: 0
+  AutoObjectParentSync: 1
 --- !u!114 &2847043059142239439
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -44,9 +66,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec92fc3d6c1e8c34b8232d817da47d55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnPoint: {fileID: 8807664049238721893}
+  spawnPoints: []
   playerPrefabs:
   - {fileID: 7074810212961939110, guid: 0cc793c5610de314e9a3e2ade3e8d937, type: 3}
   - {fileID: 5579987750021411866, guid: b0d60bb2f3c222148a4dc7f92f140329, type: 3}
   - {fileID: 3558011228071767015, guid: 9b34cc248b3f2584bac9e0007fc5cdb7, type: 3}
   - {fileID: 5225274038207700208, guid: 099c59a3570077042a92053620441fd3, type: 3}
+  healthBarController: {fileID: 0}

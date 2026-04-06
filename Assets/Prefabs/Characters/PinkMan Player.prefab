@@ -44,8 +44,10 @@ GameObject:
   - component: {fileID: 4149460126305036926}
   - component: {fileID: 1726395297945979851}
   - component: {fileID: 2622317171292227002}
-  - component: {fileID: 1757571510742437348}
+  - component: {fileID: -3902453753019300275}
   - component: {fileID: -2237916117157200216}
+  - component: {fileID: 3544289212368595151}
+  - component: {fileID: 5856925354333593596}
   m_Layer: 0
   m_Name: PinkMan Player
   m_TagString: Player
@@ -145,7 +147,7 @@ Rigidbody2D:
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
@@ -205,7 +207,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &1757571510742437348
+--- !u!114 &-3902453753019300275
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -214,29 +216,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 5225274038207700208}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9c547a2205b0e7341a6a94c6705b025e, type: 3}
+  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 6
-  jumpingPower: 13
-  rb: {fileID: 4149460126305036926}
-  groundCheck: {fileID: 1800492006531232416}
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 128
-  wallCheck: {fileID: 5064182696814046084}
-  wallLayer:
-    serializedVersion: 2
-    m_Bits: 192
-  groundCheckRadius: 0.18
-  coyoteTime: 0.12
-  jumpBufferTime: 0.12
-  maxWallJumps: 2
-  wallSlidingSpeed: 2
-  wallJumpDirection: 0
-  wallJumpDuration: 0.2
-  wallJumpPower: {x: 5, y: 10}
-  animator: {fileID: 2622317171292227002}
+  GlobalObjectIdHash: 646527192
+  InScenePlacedSourceGlobalObjectIdHash: 0
+  AlwaysReplicateAsRoot: 0
+  SynchronizeTransform: 1
+  ActiveSceneSynchronization: 0
+  SceneMigrationSynchronization: 1
+  SpawnWithObservers: 1
+  DontDestroyWithOwner: 0
+  AutoObjectParentSync: 1
 --- !u!114 &-2237916117157200216
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -254,6 +245,69 @@ MonoBehaviour:
   animator: {fileID: 2622317171292227002}
   rb: {fileID: 4149460126305036926}
   invincibleTime: 0.4
+--- !u!114 &3544289212368595151
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5225274038207700208}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e96cb6065543e43c4a752faaa1468eb1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  UseUnreliableDeltas: 0
+  SyncPositionX: 1
+  SyncPositionY: 1
+  SyncPositionZ: 1
+  SyncRotAngleX: 1
+  SyncRotAngleY: 1
+  SyncRotAngleZ: 1
+  SyncScaleX: 0
+  SyncScaleY: 0
+  SyncScaleZ: 0
+  PositionThreshold: 0.001
+  RotAngleThreshold: 0.01
+  ScaleThreshold: 0.01
+  UseQuaternionSynchronization: 0
+  UseQuaternionCompression: 0
+  UseHalfFloatPrecision: 0
+  InLocalSpace: 0
+  Interpolate: 1
+  SlerpPosition: 0
+--- !u!114 &5856925354333593596
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5225274038207700208}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c479cc0c9774d4542b1a89c56f4aed47, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 5
+  jumpingPower: 8
+  rb: {fileID: 4149460126305036926}
+  groundCheck: {fileID: 1800492006531232416}
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 128
+  wallCheck: {fileID: 5064182696814046084}
+  wallLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  groundCheckRadius: 0.18
+  coyoteTime: 0.12
+  jumpBufferTime: 0.12
+  maxWallJumps: 2
+  wallSlidingSpeed: 2
+  wallJumpDirection: 0
+  wallJumpDuration: 0.2
+  wallJumpPower: {x: 5, y: 10}
+  animator: {fileID: 2622317171292227002}
 --- !u!1 &6206228973137237253
 GameObject:
   m_ObjectHideFlags: 0
